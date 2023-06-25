@@ -131,5 +131,3 @@ return re.test('Hello World!');
 const re = /^Hello World!$/;
 return re.test('Hello World!');
 ```
-
-### extra code is added here just undo this
