@@ -5,6 +5,9 @@
 - ^ - asserts position at start of a line
 - \w - matches any word character (equivalent to [a-zA-Z0-9_])
 - \d - matches a digit (equivalent to [0-9])
+- \w+@(?:google.\com) - ?: this represents to turn capture group off
+
+⌈colou?r⌋ - The metacharacter ⌈?⌋ (question mark) means optional.
 
 | Command | Description |
 | --- | --- |
@@ -22,8 +25,15 @@
 | `+` | Match previous character 1 or more times |
 | `{3}` | Match previous character 3 times |
 | `{1,3}` | Match previous character between 1 and 3 times |
+| `^` | Beginning of a string |
+| `$` | End of a string |
+| `[]` | Match characters in this bracket range |
+| `[^]` | Don't match characters in this range |
+| `|` | OR clause |
+| `()` | Capture groupings |
+| `(?:)` |Turns capture groupings function off |
 
-| Command | Description |
+| pattern | Description |
 | --- | --- |
 | `4?986` | Here the 4 is optional but now you see we are matching on anything that either has 4 or doesn't have it. |
 | `a{2, 4}` | matching 2 or 3 or 4 times but not matching one time. |
@@ -90,6 +100,17 @@ const emailReg = RegExp(
 if (!emailReg.test(email)) {}
 ```
 
+### Email Validation 2
+```Javascript
+const re = /^(\S+)@([a-zA-Z]+\.(com|org|edu|gov))$/;
+return re.test('a@gmail.com');
+
+const emailReg = RegExp(
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gm
+);
+if (!emailReg.test(email)) {}
+```
+
 ### Phone Varification
 ```Javascript
 const re = /^[(][0-9]{3}[)][0-9]{3}-[0-9]{4}/;
@@ -130,4 +151,16 @@ return re.test('Hello World!');
 ```Javascript
 const re = /^Hello World!$/;
 return re.test('Hello World!');
+```
+
+### To match ip address
+```Javascript
+const re = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+return re.test('192.168.1.1');
+```
+
+### To match ip address using drouping
+```Javascript
+const re = /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/;
+return re.test('192.168.1.1');
 ```
